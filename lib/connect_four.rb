@@ -8,12 +8,19 @@ class Grid
   end
 
   def add(column_selection)
+    return if column_full?(column_selection)
+
     @grid[column_selection - 1] << choose_player
     add_turn
   end
 
   def add_turn
     @turn += 1
+  end
+
+  def column_full?(column_selection)
+    column = @grid[column_selection - 1]
+    column.length > 6
   end
 
   def choose_player

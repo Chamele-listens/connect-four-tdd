@@ -35,7 +35,7 @@ describe Grid do
 
   describe '#column_full?' do
     it 'returns true when full' do
-      expect(grid_gameplay.column_full).to be true
+      expect(grid_gameplay.column_full?).to be true
     end
   end
 end
