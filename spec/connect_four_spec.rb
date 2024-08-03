@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative '../connect_four'
+require_relative '../lib/connect_four'
 
 describe Grid do
   subject(:grid_gameplay) { described_class.new }
