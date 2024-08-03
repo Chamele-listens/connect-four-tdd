@@ -9,6 +9,11 @@ class Grid
 
   def add(column_selection)
     @grid[column_selection - 1] << choose_player
+    add_turn
+  end
+
+  def add_turn
+    @turn += 1
   end
 
   def choose_player

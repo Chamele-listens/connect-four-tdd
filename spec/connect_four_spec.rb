@@ -23,5 +23,13 @@ describe Grid do
       grid_gameplay.add(column_selection)
       expect(grid_gameplay.grid).to eq([[], ['x'], [], [], [], [], []])
     end
+
+    it 'adds x on the same column twice after 3 turns' do
+      column_selection = 1
+      grid_gameplay.add(column_selection)
+      grid_gameplay.add(2)
+      grid_gameplay.add(column_selection)
+      expect(grid_gameplay.grid).to eq([%w[x x], ['o'], [], [], [], [], []])
+    end
   end
 end
