@@ -11,7 +11,7 @@ describe Grid do
     end
   end
 
-  describe 'Adds a player to one column' do
+  describe '#add' do
     it 'adds x on 1st column' do
       column_selection = 1
       grid_gameplay.add(column_selection)
