@@ -20,7 +20,7 @@ class Grid
 
   def column_full?(column_selection)
     column = @grid[column_selection - 1]
-    column.length > 6
+    column.length >= 6
   end
 
   def choose_player

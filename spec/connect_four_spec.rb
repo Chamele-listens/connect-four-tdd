@@ -34,8 +34,16 @@ describe Grid do
   end
 
   describe '#column_full?' do
-    it 'returns true when full' do
-      expect(grid_gameplay.column_full?).to be true
+    it 'returns false when column is not full' do
+      column_selection = 1
+      expect(grid_gameplay.column_full?(column_selection)).to be false
+    end
+
+    subject(:column_gameplay_full) { described_class.new([%w[x x x x x x], [], [], [], [], [], []]) }
+
+    it 'returns true when column is full' do
+      column_selection = 1
+      expect(column_gameplay_full.column_full?(column_selection)).to be true
     end
   end
 end
