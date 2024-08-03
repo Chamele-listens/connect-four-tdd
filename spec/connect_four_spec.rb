@@ -32,4 +32,10 @@ describe Grid do
       expect(grid_gameplay.grid).to eq([%w[x x], ['o'], [], [], [], [], []])
     end
   end
+
+  describe '#column_full?' do
+    it 'returns true when full' do
+      expect(grid_gameplay.column_full).to be true
+    end
+  end
 end
