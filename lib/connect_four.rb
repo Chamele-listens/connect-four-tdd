@@ -50,13 +50,17 @@ class Grid
 
     horizontal_row.reject! { |element| all_equal?(element) }
 
-    horizontal_row.each do |row|
-      return true if four_items_in_row?(row)
-    end
+    true if four_items_in_horizontal_row?(horizontal_row)
   end
 
   def all_equal?(arr)
     arr.uniq.size <= 1
+  end
+
+  def four_items_in_horizontal_row?(horizontal_row)
+    horizontal_row.each do |row|
+      return true if four_items_in_row?(row)
+    end
   end
 
   def four_items_in_row?(column)
