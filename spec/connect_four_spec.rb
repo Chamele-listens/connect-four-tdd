@@ -58,4 +58,18 @@ describe Grid do
       expect(grid_gameplay.four_items_in_row?(column_lose)).to be false
     end
   end
+
+  describe '#check_vertical' do
+    subject(:grid_vertical_call) { described_class.new([%w[x x x x], [], [], [], [], [], []]) }
+    it 'calls #four_items_in_row? when column has 4 x or o' do
+      expect(grid_vertical_call).to receive(:four_items_in_row?).with(%w[x x x x])
+      grid_vertical_call.check_vertical
+    end
+
+    subject(:grid_vertical_not_call) { described_class.new([%w[x x x], [], [], [], [], [], []]) }
+    it 'doesnt #four_items_in_row? when column doesnt have 4 x or o' do
+      expect(grid_vertical_not_call).not_to receive(:four_items_in_row?).with(%w[x x x])
+      grid_vertical_not_call.check_vertical
+    end
+  end
 end
