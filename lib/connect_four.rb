@@ -39,14 +39,8 @@ class Grid
 
   def check_horizontal
     horizontal_row = [[], [], [], [], [], []]
-    row_counter = 0
 
-    6.times do
-      @grid.each do |column|
-        horizontal_row[row_counter] << column[row_counter]
-      end
-      row_counter += 1
-    end
+    each_column_item_to_horizontal_row(horizontal_row)
 
     horizontal_row.reject! { |element| all_equal?(element) }
 
@@ -55,6 +49,17 @@ class Grid
 
   def all_equal?(arr)
     arr.uniq.size <= 1
+  end
+
+  def each_column_item_to_horizontal_row(horizontal_row, row_counter = 0)
+    6.times do
+      @grid.each do |column|
+        horizontal_row[row_counter] << column[row_counter]
+      end
+      row_counter += 1
+    end
+
+    horizontal_row.reject! { |element| all_equal?(element) }
   end
 
   def four_items_in_horizontal_row?(horizontal_row)

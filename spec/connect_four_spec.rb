@@ -72,4 +72,14 @@ describe Grid do
       grid_vertical_not_call.check_vertical
     end
   end
+
+  describe '#each_column_item_to_horizontal_row' do
+    subject(:grid_horizontal) { described_class.new([%w[x x], %w[x], %w[x], %w[x o], %w[o], %w[o], %w[o]]) }
+
+    it 'append each item from column to form an a list of horizontal items' do
+      horizontal_row = [[], [], [], [], [], []]
+      a = [%w[x x x x o o o], ['x', nil, nil, 'o', nil, nil, nil]]
+      expect(grid_horizontal.each_column_item_to_horizontal_row(horizontal_row)).to eq(a)
+    end
+  end
 end
