@@ -67,7 +67,7 @@ describe Grid do
     end
 
     subject(:grid_vertical_not_call) { described_class.new([%w[x x x], [], [], [], [], [], []]) }
-    it 'doesnt #four_items_in_row? when column doesnt have 4 x or o' do
+    it 'doesnt call #four_items_in_row? when column doesnt have 4 x or o' do
       expect(grid_vertical_not_call).not_to receive(:four_items_in_row?).with(%w[x x x])
       grid_vertical_not_call.check_vertical
     end
