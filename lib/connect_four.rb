@@ -49,6 +49,7 @@ class Grid
 
       return true if temp_column.length >= 4
     end
+    false
   end
 
   def choose_player
