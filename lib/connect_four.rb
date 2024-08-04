@@ -41,13 +41,13 @@ class Grid
     temp_column = []
 
     column.each do |item|
-      return true if temp_column.length >= 4
-
       if item == choose_player
         temp_column << item
       else
         temp_column = []
       end
+
+      return true if temp_column.length >= 4
     end
   end
 

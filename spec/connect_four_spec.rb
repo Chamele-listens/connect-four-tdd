@@ -46,4 +46,11 @@ describe Grid do
       expect(column_gameplay_full.column_full?(column_selection)).to be true
     end
   end
+
+  describe '#four_items_in_row?' do
+    column = %w[x x x x]
+    it 'returns true when column has 4 x in a row' do
+      expect(grid_gameplay.four_items_in_row?(column)).to be true
+    end
+  end
 end
