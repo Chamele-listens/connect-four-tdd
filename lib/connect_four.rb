@@ -42,13 +42,17 @@ class Grid
 
     each_column_item_to_horizontal_row(horizontal_row)
 
-    horizontal_row.reject! { |element| all_equal?(element) }
+    # horizontal_row.reject! { |element| all_equal?(element) }
 
     true if four_items_in_horizontal_row?(horizontal_row)
   end
 
   def all_equal?(arr)
     arr.uniq.size <= 1
+  end
+
+  def remove_arr_with_same_value(horizontal_row)
+    horizontal_row.reject! { |element| all_equal?(element) }
   end
 
   def each_column_item_to_horizontal_row(horizontal_row, row_counter = 0)
@@ -59,7 +63,7 @@ class Grid
       row_counter += 1
     end
 
-    horizontal_row.reject! { |element| all_equal?(element) }
+    remove_arr_with_same_value(horizontal_row)
   end
 
   def four_items_in_horizontal_row?(horizontal_row)
