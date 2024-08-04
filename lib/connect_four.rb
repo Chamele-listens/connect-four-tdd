@@ -37,6 +37,28 @@ class Grid
     end
   end
 
+  def check_horizontal
+    horizontal_row = [[], [], [], [], [], []]
+    row_counter = 0
+
+    6.times do
+      @grid.each do |column|
+        horizontal_row[row_counter] << column[row_counter]
+      end
+      row_counter += 1
+    end
+
+    horizontal_row.reject! { |element| all_equal?(element) }
+
+    horizontal_row.each do |row|
+      return true if four_items_in_row?(row)
+    end
+  end
+
+  def all_equal?(arr)
+    arr.uniq.size <= 1
+  end
+
   def four_items_in_row?(column)
     temp_column = []
 
