@@ -76,10 +76,13 @@ class Grid
     temp_cross = []
     counter_cross = 0
 
-    loop do
-      return false if @grid[counter_cross][counter_cross] == nil
+    4.times do
+      return false if @grid[counter_cross][counter_cross].nil?
 
       temp_value = @grid[counter_cross][counter_cross]
+
+      return false if temp_value.nil?
+
       if temp_value == choose_player
         temp_cross << temp_value
         counter_cross += 1
