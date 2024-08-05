@@ -47,6 +47,31 @@ class Grid
     true if four_items_in_horizontal_row?(horizontal_row)
   end
 
+  def all_equal?(arr)
+    arr.uniq.size <= 1
+  end
+
+  def remove_arr_with_same_value(horizontal_row)
+    horizontal_row.reject! { |element| all_equal?(element) }
+  end
+
+  def each_column_item_to_horizontal_row(horizontal_row, row_counter = 0)
+    6.times do
+      @grid.each do |column|
+        horizontal_row[row_counter] << column[row_counter]
+      end
+      row_counter += 1
+    end
+
+    remove_arr_with_same_value(horizontal_row)
+  end
+
+  def four_items_in_horizontal_row?(horizontal_row)
+    horizontal_row.each do |row|
+      return true if four_items_in_row?(row)
+    end
+  end
+
   def check_cross
     temp_cross = []
     cross_counter_horinzontal = 0
@@ -78,31 +103,7 @@ class Grid
       vertical_path += 1
       cross_counter_vertical += vertical_path
     end
-  end
-
-  def all_equal?(arr)
-    arr.uniq.size <= 1
-  end
-
-  def remove_arr_with_same_value(horizontal_row)
-    horizontal_row.reject! { |element| all_equal?(element) }
-  end
-
-  def each_column_item_to_horizontal_row(horizontal_row, row_counter = 0)
-    6.times do
-      @grid.each do |column|
-        horizontal_row[row_counter] << column[row_counter]
-      end
-      row_counter += 1
-    end
-
-    remove_arr_with_same_value(horizontal_row)
-  end
-
-  def four_items_in_horizontal_row?(horizontal_row)
-    horizontal_row.each do |row|
-      return true if four_items_in_row?(row)
-    end
+    false
   end
 
   def four_items_in_row?(column)
