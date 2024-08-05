@@ -54,7 +54,7 @@ describe Grid do
     end
 
     column_lose = %w[x x x o x]
-    it 'returns nil when x are not in a row of 4' do
+    it 'returns false when x are not in a row of 4' do
       expect(grid_gameplay.four_items_in_row?(column_lose)).to be false
     end
   end
