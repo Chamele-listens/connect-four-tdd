@@ -74,39 +74,20 @@ class Grid
 
   def check_cross
     temp_cross = []
-    cross_counter_horinzontal = 0
-    cross_counter_vertical = 0
-    horizontal_path = 0
-    vertical_path = 0
+    counter_cross = 0
 
-    # move checker vertically
-    3.times do
-      # move checker horzontially
-      4.times do
-        # actual checker checking upper right
-        4.times do
-          temp_value = @grid[cross_counter_horinzontal][cross_counter_vertical]
+    loop do
+      return false if @grid[counter_cross][counter_cross] == nil
 
-          if temp_value == choose_player
-            cross_counter_horinzontal += 1
-            cross_counter_vertical += 1
-            temp_cross << temp_value
-            return true if temp_cross.length >= 4
-          else
-            temp_cross = []
-          end
-        end
-        horizontal_path += 1
-        cross_counter_horinzontal = 0
-        cross_counter_vertical = 0
-        cross_counter_horinzontal += horizontal_path
-        cross_counter_vertical += horizontal_path
-        cross_counter_vertical += vertical_path
+      temp_value = @grid[counter_cross][counter_cross]
+      if temp_value == choose_player
+        temp_cross << temp_value
+        counter_cross += 1
+        return true if temp_cross.length >= 4
+      else
+        temp_cross = []
       end
-      vertical_path += 1
-      cross_counter_vertical += vertical_path
     end
-    false
   end
 
   def four_items_in_row?(column)
