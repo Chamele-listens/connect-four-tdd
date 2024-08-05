@@ -47,6 +47,39 @@ class Grid
     true if four_items_in_horizontal_row?(horizontal_row)
   end
 
+  def check_cross
+    temp_cross = []
+    cross_counter_horinzontal = 0
+    cross_counter_vertical = 0
+    horizontal_path = 0
+    vertical_path = 0
+
+    3.times do
+      4.times do
+        4.times do
+          temp_value = @grid[cross_counter_horinzontal][cross_counter_vertical]
+
+          if temp_value == choose_player
+            cross_counter_horinzontal += 1
+            cross_counter_vertical += 1
+            temp_cross << temp_value
+            return true if temp_cross.length >= 4
+          else
+            temp_cross = []
+          end
+        end
+        horizontal_path += 1
+        cross_counter_horinzontal = 0
+        cross_counter_vertical = 0
+        cross_counter_horinzontal += horizontal_path
+        cross_counter_vertical += horizontal_path
+        cross_counter_vertical += vertical_path
+      end
+      vertical_path += 1
+      cross_counter_vertical += vertical_path
+    end
+  end
+
   def all_equal?(arr)
     arr.uniq.size <= 1
   end
