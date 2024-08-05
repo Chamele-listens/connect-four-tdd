@@ -84,9 +84,14 @@ describe Grid do
   end
 
   describe '#check_cross' do
-    subject(:grid_cross) { described_class.new([%w[x], %w[o x], %w[o x x], %w[o o x x], %w[], %w[], %w[]]) }
+    subject(:grid_cross_X) { described_class.new([%w[x], %w[o x], %w[o x x], %w[o o x x], %w[], %w[], %w[]]) }
     it 'returns true when x are cross' do
-      expect(grid_cross.check_cross).to be true
+      expect(grid_cross_X.check_cross).to be true
+    end
+
+    subject(:grid_cross_lost) { described_class.new([%w[o x], %w[x], %w[x], %w[x], %w[o], %w[o], %w[x]]) }
+    it 'returns false when x are cross' do
+      expect(grid_cross_lost.check_cross).to be true
     end
   end
 end
