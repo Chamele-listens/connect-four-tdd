@@ -82,4 +82,11 @@ describe Grid do
       expect(grid_horizontal.each_column_item_to_horizontal_row(horizontal_row)).to eq(a)
     end
   end
+
+  describe '#check_cross' do
+    subject(:grid_cross) { described_class.new([%w[x], %w[o x], %w[o x x], %w[o o x x], %w[], %w[], %w[]]) }
+    it 'returns true when x are cross' do
+      expect(grid_cross.check_cross).to be true
+    end
+  end
 end

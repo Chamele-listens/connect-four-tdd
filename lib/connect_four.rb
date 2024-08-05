@@ -79,8 +79,11 @@ class Grid
     horizontal_path = 0
     vertical_path = 0
 
+    # move checker vertically
     3.times do
+      # move checker horzontially
       4.times do
+        # actual checker checking upper right
         4.times do
           temp_value = @grid[cross_counter_horinzontal][cross_counter_vertical]
 
