@@ -95,12 +95,12 @@ describe Grid do
     end
   end
 
-  describe '#check_cross' do
+  describe '#move_cross_checker_horizontal' do
     subject(:grid_cross_horizontal_2nd) do
       described_class.new([%w[o], %w[x], %w[o x], %w[x o x], %w[o x o x], %w[o], %w[x]])
     end
     it 'returns true when cross is on second column' do
-      expect(grid_cross_horizontal_2nd.check_cross).to be true
+      expect(grid_cross_horizontal_2nd.move_cross_checker_horizontal).to be true
     end
 
     subject(:grid_cross_horizontal_3rd) do
@@ -108,7 +108,7 @@ describe Grid do
     end
 
     it 'returns true when cross is on 3rd column' do
-      expect(grid_cross_horizontal_3rd.check_cross).to be true
+      expect(grid_cross_horizontal_3rd.move_cross_checker_horizontal).to be true
     end
 
     subject(:grid_cross_horizontal_4th) do
@@ -116,7 +116,7 @@ describe Grid do
     end
 
     it 'returns true when cross is on 4th column' do
-      expect(grid_cross_horizontal_4th.check_cross).to be true
+      expect(grid_cross_horizontal_4th.move_cross_checker_horizontal).to be true
     end
   end
 end
