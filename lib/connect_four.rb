@@ -83,9 +83,10 @@ class Grid
 
       return false if temp_value.nil?
 
+      counter_cross += 1
+
       if temp_value == choose_player
         temp_cross << temp_value
-        counter_cross += 1
         return true if temp_cross.length >= 4
       else
         temp_cross = []
