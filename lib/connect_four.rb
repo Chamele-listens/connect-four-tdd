@@ -73,28 +73,37 @@ class Grid
   end
 
   def check_cross
-    true if move_cross_checker_horizontal
+    counter_cross_v = 0
+    3.times do
+      true if move_cross_checker_horizontal(counter_cross_v)
+      counter_cross_v += 1
+    end
+
+    false
   end
 
-  def move_cross_checker_horizontal
+  def move_cross_checker_horizontal(counter_cross_v)
     counter_cross_h = 0
     3.times do
-      return true if check_diagonal_right(counter_cross_h)
+      return true if check_diagonal_right(counter_cross_v, counter_cross_h)
 
       counter_cross_h += 1
     end
   end
 
-  def check_diagonal_right(counter_cross_h, temp_cross = [], counter_cross = 0)
+  def check_diagonal_right(counter_cross_v, counter_cross_h, temp_cross = [], counter_cross = 0)
     4.times do
-      return false if @grid[counter_cross_h][counter_cross].nil?
+      # return false if @grid[counter_cross_h][counter_cross_v].nil?
 
-      temp_value = @grid[counter_cross_h][counter_cross]
+      temp_value = @grid[counter_cross_h][counter_cross_v]
 
-      return false if temp_value.nil?
+      temp_cross = [] if temp_cross.include?(nil)
+
+      # return false if temp_value.nil?
 
       counter_cross += 1
       counter_cross_h += 1
+      counter_cross_v += 1
 
       if temp_value == choose_player
         temp_cross << temp_value
