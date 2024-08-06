@@ -76,6 +76,10 @@ class Grid
     temp_cross = []
     counter_cross = 0
 
+    return true if check_diagonal_right(temp_cross,counter_cross)
+  end
+
+  def check_diagonal_right(temp_cross,counter_cross)
     4.times do
       return false if @grid[counter_cross][counter_cross].nil?
 
