@@ -76,10 +76,13 @@ class Grid
     temp_cross = []
     counter_cross = 0
 
-    return true if check_diagonal_right(temp_cross,counter_cross)
+    3.times do
+      true if check_diagonal_right(temp_cross, counter_cross)
+      counter_cross += 1
+    end
   end
 
-  def check_diagonal_right(temp_cross,counter_cross)
+  def check_diagonal_right(temp_cross, counter_cross)
     4.times do
       return false if @grid[counter_cross][counter_cross].nil?
 
@@ -91,6 +94,7 @@ class Grid
 
       if temp_value == choose_player
         temp_cross << temp_value
+        counter_cross = 0 if counter_cross >= 4
         return true if temp_cross.length >= 4
       else
         temp_cross = []
