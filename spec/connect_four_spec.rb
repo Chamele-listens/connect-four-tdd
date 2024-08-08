@@ -123,5 +123,13 @@ describe Grid do
     it 'returns true' do
       expect(grid_cross_vertical.check_cross).to be true
     end
+
+    subject(:grid_cross_vertical_lost) do
+      described_class.new([%w[o o x], %w[x o], %w[o x x], %w[x], %w[o], %w[], %w[]])
+    end
+
+    it 'returns false' do
+      expect(grid_cross_vertical_lost.check_cross).to be false
+    end
   end
 end
