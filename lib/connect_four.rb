@@ -73,6 +73,10 @@ class Grid
   end
 
   def check_cross
+    move_cross_checker_vertical
+  end
+
+  def move_cross_checker_vertical
     counter_cross_v = 0
     3.times do
       return true if move_cross_checker_horizontal(counter_cross_v)
