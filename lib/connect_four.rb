@@ -95,7 +95,8 @@ class Grid
   end
 
   def check_diagonal_right(counter_cross_v, counter_cross_h, temp_cross = [], counter_cross = 0)
-    4.times do
+    loop_counter = 0
+    loop do
       # return false if @grid[counter_cross_h][counter_cross_v].nil?
 
       temp_value = @grid[counter_cross_h][counter_cross_v]
@@ -115,7 +116,12 @@ class Grid
       else
         temp_cross = []
       end
+
+      loop_counter += 1
+
+      break if loop_counter >= 4
     end
+    false
   end
 
   def four_items_in_row?(column)
