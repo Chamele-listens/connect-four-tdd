@@ -88,6 +88,12 @@ describe Grid do
     it 'returns true when x are cross' do
       expect(grid_cross_X.check_diagonal_right(0, 0)).to be true
     end
+
+    subject(:grid_cross_lost) { described_class.new([%w[x], %w[o x], %w[o x x], %w[o o x o], %w[], %w[], %w[]]) }
+
+    it 'returns false when x are not cross' do
+      expect(grid_cross_lost.check_diagonal_right(0, 0)).to be false
+    end
   end
 
   describe '#move_cross_checker_horizontal' do
