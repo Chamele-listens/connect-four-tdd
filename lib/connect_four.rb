@@ -103,7 +103,7 @@ class Grid
       return true if check_diagonal_right(counter_cross_v, counter_cross_h, check_diagonal)
 
       # counter_cross_h += 1
-      move_cross.call(counter_cross_h)
+      counter_cross_h = move_cross.call(counter_cross_h)
     end
 
     false
@@ -123,7 +123,7 @@ class Grid
 
       counter_cross += 1
       # counter_cross_h += 1
-      check_diagonal.call(counter_cross_h)
+      counter_cross_h = check_diagonal.call(counter_cross_h)
       counter_cross_v += 1
 
       if temp_value == choose_player
