@@ -73,7 +73,9 @@ class Grid
   end
 
   def check_cross
-    move_cross_horizontal_block = lambda do |counter_cross_h|
+    # lambda for checking weather a player has made a cross
+    # diagonally right and checking all right side
+    move_cross_horizontal_right_block = lambda do |counter_cross_h|
       counter_cross_h + 1
     end
 
@@ -81,7 +83,18 @@ class Grid
       counter_cross_h + 1
     end
 
-    move_cross_checker_vertical(move_cross_horizontal_block, check_diagonal_right_block)
+    # lamba for checking if a player made a cross
+    # diagonally left and checking all left side
+    move_cross_horizontal_left_block = lamda do |counter_cross_h|
+      counter_cross_h - 1
+    end
+
+    check_diagonal_left_block = lambda do |counter_cross_h|
+      counter_cross_h - 1
+    end
+
+    move_cross_checker_vertical(move_cross_horizontal_right_block, check_diagonal_right_block)
+    move_cross_checker_vertical(move_cross_horizontal_left_block, check_diagonal_left_block)
   end
 
   def move_cross_checker_vertical(move_cross, check_diagonal)
