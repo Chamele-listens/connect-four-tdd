@@ -83,14 +83,16 @@ class Grid
       counter_cross_h + 1
     end
 
-    # lamba for checking if a player made a cross
+    # lambda for checking if a player made a cross
     # diagonally left and checking all left side
     move_cross_horizontal_left_block = lamda do |counter_cross_h|
-      counter_cross_h - 1
+      horizontal_length = @grid.length
+      horizontal_length - counter_cross_h
     end
 
     check_diagonal_left_block = lambda do |counter_cross_h|
-      counter_cross_h - 1
+      horizontal_length = @grid.length
+      horizontal_length - counter_cross_h
     end
 
     move_cross_checker_vertical(move_cross_horizontal_right_block, check_diagonal_right_block)
