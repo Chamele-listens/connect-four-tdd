@@ -74,11 +74,11 @@ class Grid
 
   def check_cross
     move_cross_horizontal_block = lambda do |counter_cross_h|
-      counter_cross_h += 1
+      counter_cross_h + 1
     end
 
     check_diagonal_right_block = lambda do |counter_cross_h|
-      counter_cross_h += 1
+      counter_cross_h + 1
     end
 
     move_cross_checker_vertical(move_cross_horizontal_block, check_diagonal_right_block)
@@ -98,7 +98,7 @@ class Grid
 
   def move_cross_checker_horizontal(counter_cross_v, move_cross, check_diagonal)
     counter_cross_h = 0
-    game_grid_length = @grid.length
+    # game_grid_length = @grid.length
     4.times do
       return true if check_diagonal_right(counter_cross_v, counter_cross_h, check_diagonal)
 
