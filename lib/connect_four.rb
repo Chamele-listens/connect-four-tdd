@@ -73,6 +73,10 @@ class Grid
   end
 
   def check_cross
+    move_cross_horizontal_block = lamda do |counter_cross_h|
+      counter_cross_h += 1
+    end
+
     move_cross_checker_vertical
   end
 
