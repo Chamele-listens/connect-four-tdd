@@ -73,17 +73,22 @@ class Grid
   end
 
   def check_cross
-    move_cross_horizontal_block = lamda do |counter_cross_h|
+    move_cross_horizontal_block = lambda do |counter_cross_h|
       counter_cross_h += 1
     end
 
-    move_cross_checker_vertical
+    check_diagonal_right_block = lambda do |counter_cross_h|
+      counter_cross_h += 1
+    end
+
+    move_cross_checker_vertical(move_cross_horizontal_block, check_diagonal_right_block)
   end
 
-  def move_cross_checker_vertical
+  def move_cross_checker_vertical(move_cross, check_diagonal)
     counter_cross_v = 0
+
     3.times do
-      return true if move_cross_checker_horizontal(counter_cross_v)
+      return true if move_cross_checker_horizontal(counter_cross_v, move_cross, check_diagonal)
 
       counter_cross_v += 1
     end
@@ -91,19 +96,22 @@ class Grid
     false
   end
 
-  def move_cross_checker_horizontal(counter_cross_v)
+  def move_cross_checker_horizontal(counter_cross_v, move_cross, check_diagonal)
     counter_cross_h = 0
+    game_grid_length = @grid.length
     4.times do
-      return true if check_diagonal_right(counter_cross_v, counter_cross_h)
+      return true if check_diagonal_right(counter_cross_v, counter_cross_h, check_diagonal)
 
-      counter_cross_h += 1
+      # counter_cross_h += 1
+      move_cross.call(counter_cross_h)
     end
 
     false
   end
 
-  def check_diagonal_right(counter_cross_v, counter_cross_h, temp_cross = [], counter_cross = 0)
+  def check_diagonal_right(counter_cross_v, counter_cross_h, check_diagonal, counter_cross = 0)
     loop_counter = 0
+    temp_cross = []
     loop do
       # return false if @grid[counter_cross_h][counter_cross_v].nil?
 
@@ -114,7 +122,8 @@ class Grid
       # return false if temp_value.nil?
 
       counter_cross += 1
-      counter_cross_h += 1
+      # counter_cross_h += 1
+      check_diagonal.call(counter_cross_h)
       counter_cross_v += 1
 
       if temp_value == choose_player
