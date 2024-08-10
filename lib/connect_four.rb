@@ -88,6 +88,10 @@ class Grid
       counter_cross_h - 1
     end
 
+    # 2 boolean value for checking left cross and right cross:
+    # - false for right cross check
+    # - true for left cross check
+    
     cross_right = false 
     cross_left = true
 
