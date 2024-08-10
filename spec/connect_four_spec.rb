@@ -164,6 +164,14 @@ describe Grid do
       it 'returns true on 3rd last column' do
         expect(grid_cross_horizontal_left_3rd.move_cross_checker_horizontal(0, check_diagonal_left_block, true)).to be true # rubocop:disable Layout/LineLength
       end
+
+      subject(:grid_cross_horizontal_left_4th) do
+        described_class.new([%w[x o x x], %w[o o x], %w[x x], %w[x], %w[o], %w[x], %w[o]])
+      end
+
+      it 'returns true on 4th last column' do
+        expect(grid_cross_horizontal_left_4th.move_cross_checker_horizontal(0, check_diagonal_left_block, true)).to be true # rubocop:disable Layout/LineLength
+      end
     end
   end
 
