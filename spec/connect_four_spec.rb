@@ -149,6 +149,13 @@ describe Grid do
     end
 
     context 'for checking all left cross' do
+      subject(:grid_cross_horizontal_left_2nd) do
+        described_class.new([%w[x], %w[o], %w[x o x x], %w[o o x], %w[x x], %w[x], %w[o]])
+      end
+
+      it 'returns true on 2nd last column' do
+        expect(grid_cross_horizontal_left_2nd.move_cross_checker_horizontal(0, check_diagonal_left_block, true)).to be true # rubocop:disable Layout/LineLength
+      end
     end
   end
 
