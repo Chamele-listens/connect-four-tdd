@@ -90,13 +90,13 @@ describe Grid do
   describe '#check_diagonal_right' do
     subject(:grid_cross_X) { described_class.new([%w[x], %w[o x], %w[o x x], %w[o o x x], %w[], %w[], %w[]]) }
     it 'returns true when x are cross' do
-      expect(grid_cross_X.check_diagonal_right(0, 0, check_diagonal_block)).to be true
+      expect(grid_cross_X.check_diagonal_right(0, 0, check_diagonal_block,false)).to be true
     end
 
     subject(:grid_cross_lost) { described_class.new([%w[x], %w[o x], %w[o x x], %w[o o x o], %w[], %w[], %w[]]) }
 
     it 'returns false when x are not cross' do
-      expect(grid_cross_lost.check_diagonal_right(0, 0, check_diagonal_block)).to be false
+      expect(grid_cross_lost.check_diagonal_right(0, 0, check_diagonal_block,false)).to be false
     end
   end
 
@@ -105,7 +105,7 @@ describe Grid do
       described_class.new([%w[o], %w[x], %w[o x], %w[x o x], %w[o x o x], %w[o], %w[x]])
     end
     it 'returns true when cross is on second column' do
-      expect(grid_cross_horizontal_2nd.move_cross_checker_horizontal(0, check_diagonal_block)).to be true
+      expect(grid_cross_horizontal_2nd.move_cross_checker_horizontal(0, check_diagonal_block,false)).to be true
     end
 
     subject(:grid_cross_horizontal_3rd) do
@@ -113,7 +113,7 @@ describe Grid do
     end
 
     it 'returns true when cross is on 3rd column' do
-      expect(grid_cross_horizontal_3rd.move_cross_checker_horizontal(0, check_diagonal_block)).to be true
+      expect(grid_cross_horizontal_3rd.move_cross_checker_horizontal(0, check_diagonal_block,false)).to be true
     end
 
     subject(:grid_cross_horizontal_4th) do
@@ -121,7 +121,7 @@ describe Grid do
     end
 
     it 'returns true when cross is on 4th column' do
-      expect(grid_cross_horizontal_4th.move_cross_checker_horizontal(0, check_diagonal_block)).to be true
+      expect(grid_cross_horizontal_4th.move_cross_checker_horizontal(0, check_diagonal_block,false)).to be true
     end
   end
 
@@ -131,7 +131,7 @@ describe Grid do
     end
 
     it 'returns true' do
-      expect(grid_cross_vertical.move_cross_checker_vertical(check_diagonal_block)).to be true
+      expect(grid_cross_vertical.move_cross_checker_vertical(check_diagonal_block,false)).to be true
     end
 
     subject(:grid_cross_vertical_lost) do
@@ -139,7 +139,7 @@ describe Grid do
     end
 
     it 'returns false' do
-      expect(grid_cross_vertical_lost.move_cross_checker_vertical(check_diagonal_block)).to be false
+      expect(grid_cross_vertical_lost.move_cross_checker_vertical(check_diagonal_block,false)).to be false
     end
   end
 end

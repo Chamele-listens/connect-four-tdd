@@ -80,23 +80,26 @@ class Grid
       counter_cross_h + 1
     end
 
+
     # lambda for checking if a player made a cross
     # diagonally left and checking all left side
 
     check_diagonal_left_block = lambda do |counter_cross_h|
-      horizontal_length = @grid.length
-      horizontal_length - counter_cross_h
+      counter_cross_h - 1
     end
 
-    move_cross_checker_vertical(check_diagonal_right_block)
-    move_cross_checker_vertical(check_diagonal_left_block)
+    cross_right = false 
+    cross_left = true
+
+    move_cross_checker_vertical(check_diagonal_right_block,cross_right)
+    move_cross_checker_vertical(check_diagonal_left_block,cross_left)
   end
 
-  def move_cross_checker_vertical(check_diagonal_block)
+  def move_cross_checker_vertical(check_diagonal_block,cross_left)
     counter_cross_v = 0
 
     3.times do
-      return true if move_cross_checker_horizontal(counter_cross_v, check_diagonal_block)
+      return true if move_cross_checker_horizontal(counter_cross_v, check_diagonal_block,cross_left)
 
       counter_cross_v += 1
     end
@@ -104,11 +107,12 @@ class Grid
     false
   end
 
-  def move_cross_checker_horizontal(counter_cross_v, check_diagonal_block)
+  def move_cross_checker_horizontal(counter_cross_v, check_diagonal_block,cross_left)
     counter_cross_h = 0
-    # game_grid_length = @grid.length
+    counter_cross_h = 7 if cross_left == true
+
     4.times do
-      return true if check_diagonal_right(counter_cross_v, counter_cross_h, check_diagonal_block)
+      return true if check_diagonal_right(counter_cross_v, counter_cross_h, check_diagonal_block,cross_left)
 
       # counter_cross_h += 1
       counter_cross_h = check_diagonal_block.call(counter_cross_h)
@@ -117,9 +121,10 @@ class Grid
     false
   end
 
-  def check_diagonal_right(counter_cross_v, counter_cross_h, check_diagonal_block, counter_cross = 0)
+  def check_diagonal_right(counter_cross_v, counter_cross_h, check_diagonal_block,cross_left, counter_cross = 0)
     loop_counter = 0
     temp_cross = []
+    counter_cross_h = 7 if cross_left == true
     loop do
       # return false if @grid[counter_cross_h][counter_cross_v].nil?
 
