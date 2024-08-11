@@ -23,6 +23,37 @@ class Grid
     column.length >= 6
   end
 
+  def display_grid
+    column_length = []
+
+    @grid.each do |column|
+      column_length << column.length
+    end
+
+    tallest_column = column_length.max
+
+    display_list = []
+
+    tallest_column.times do
+      row_list = []
+
+      @grid.each do |column|
+        row_list << ' ' if column[tallest_column - 1].nil?
+        next if column[tallest_column - 1].nil?
+
+        row_list << column[tallest_column - 1]
+      end
+
+      display_list << row_list
+
+      tallest_column -= 1
+    end
+
+    display_list.each do |row|
+      p row
+    end
+  end
+
   def player_win?
     pass
   end
