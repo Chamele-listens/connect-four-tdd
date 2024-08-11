@@ -7,11 +7,26 @@ class Grid
     @turn = turn
   end
 
+  def start
+    loop do
+      p "#{choose_player} turn"
+      player_input = gets.chomp.to_i
+      add(player_input)
+      display_grid
+
+      if player_win? == true
+        p "#{choose_player} wins"
+        break
+      end
+
+      add_turn
+    end
+  end
+
   def add(column_selection)
     return if column_full?(column_selection)
 
     @grid[column_selection - 1] << choose_player
-    add_turn
   end
 
   def add_turn
@@ -55,8 +70,9 @@ class Grid
   def player_win?
     return true if check_vertical
     return true if check_horizontal
+    return true if check_cross
 
-    true if check_cross
+    false
   end
 
   def check_vertical
@@ -67,6 +83,7 @@ class Grid
 
       return true if four_items_in_row?(column)
     end
+    false
   end
 
   def check_horizontal
@@ -76,7 +93,9 @@ class Grid
 
     # horizontal_row.reject! { |element| all_equal?(element) }
 
-    true if four_items_in_horizontal_row?(horizontal_row)
+    return true if four_items_in_horizontal_row?(horizontal_row)
+
+    false
   end
 
   def all_equal?(arr)
@@ -85,6 +104,7 @@ class Grid
 
   def remove_arr_with_same_value(horizontal_row)
     horizontal_row.reject! { |element| all_equal?(element) }
+    false
   end
 
   def each_column_item_to_horizontal_row(horizontal_row, row_counter = 0)
@@ -96,12 +116,15 @@ class Grid
     end
 
     remove_arr_with_same_value(horizontal_row)
+
+    false
   end
 
   def four_items_in_horizontal_row?(horizontal_row)
     horizontal_row.each do |row|
       return true if four_items_in_row?(row)
     end
+    false
   end
 
   def check_cross
@@ -126,8 +149,10 @@ class Grid
     cross_right = false
     cross_left = true
 
-    move_cross_checker_vertical(check_diagonal_right_block, cross_right)
-    move_cross_checker_vertical(check_diagonal_left_block, cross_left)
+    return true if move_cross_checker_vertical(check_diagonal_right_block, cross_right)
+    return true if move_cross_checker_vertical(check_diagonal_left_block, cross_left)
+
+    false
   end
 
   def move_cross_checker_vertical(check_diagonal_block, cross_left)
