@@ -24,13 +24,7 @@ class Grid
   end
 
   def display_grid
-    column_length = []
-
-    @grid.each do |column|
-      column_length << column.length
-    end
-
-    tallest_column = column_length.max
+    tallest_column = 6
 
     display_list = []
 
