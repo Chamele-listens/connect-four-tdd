@@ -53,7 +53,10 @@ class Grid
   end
 
   def player_win?
-    pass
+    return true if check_vertical
+    return true if check_horizontal
+
+    true if check_cross
   end
 
   def check_vertical
