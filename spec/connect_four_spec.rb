@@ -91,17 +91,17 @@ describe Grid do
     counter_cross_h - 1
   end
 
-  describe '#check_diagonal_right' do
+  describe '#check_diagonal' do
     context 'for checking right cross' do
       subject(:grid_cross_X) { described_class.new([%w[x], %w[o x], %w[o x x], %w[o o x x], %w[], %w[], %w[]]) }
       it 'returns true when x are cross' do
-        expect(grid_cross_X.check_diagonal_right(0, 0, check_diagonal_right_block)).to be true
+        expect(grid_cross_X.check_diagonal(0, 0, check_diagonal_right_block)).to be true
       end
 
       subject(:grid_cross_lost) { described_class.new([%w[x], %w[o x], %w[o x x], %w[o o x o], %w[], %w[], %w[]]) }
 
       it 'returns false when x are not cross' do
-        expect(grid_cross_lost.check_diagonal_right(0, 0, check_diagonal_right_block)).to be false
+        expect(grid_cross_lost.check_diagonal(0, 0, check_diagonal_right_block)).to be false
       end
     end
 
@@ -110,14 +110,14 @@ describe Grid do
         described_class.new([%w[x], %w[o], %w[x], %w[o o o x], %w[x o x], %w[o x], %w[x]])
       end
       it 'returns true when x cross' do
-        expect(grid_cross_left_win.check_diagonal_right(0, 6, check_diagonal_left_block)).to be true
+        expect(grid_cross_left_win.check_diagonal(0, 6, check_diagonal_left_block)).to be true
       end
 
       subject(:grid_cross_left_lost) do
         described_class.new([%w[x], %w[o], %w[x], %w[o o o], %w[x o x], %w[o x], %w[x]])
       end
       it 'returns false when x not cross' do
-        expect(grid_cross_left_lost.check_diagonal_right(0, 6, check_diagonal_left_block)).to be false
+        expect(grid_cross_left_lost.check_diagonal(0, 6, check_diagonal_left_block)).to be false
       end
     end
   end

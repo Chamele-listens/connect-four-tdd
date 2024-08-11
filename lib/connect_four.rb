@@ -115,7 +115,7 @@ class Grid
     counter_cross_h = 6 if cross_left == true
 
     4.times do
-      return true if check_diagonal_right(counter_cross_v, counter_cross_h, check_diagonal_block)
+      return true if check_diagonal(counter_cross_v, counter_cross_h, check_diagonal_block)
 
       # counter_cross_h += 1
       counter_cross_h = check_diagonal_block.call(counter_cross_h)
@@ -124,7 +124,7 @@ class Grid
     false
   end
 
-  def check_diagonal_right(counter_cross_v, counter_cross_h, check_diagonal_block, counter_cross = 0)
+  def check_diagonal(counter_cross_v, counter_cross_h, check_diagonal_block, counter_cross = 0)
     loop_counter = 0
     temp_cross = []
     # counter_cross_h = 7 if cross_left == true
