@@ -34,6 +34,14 @@ class Grid
 
     display_list = []
 
+    grid_to_display(tallest_column, display_list)
+
+    display_list.each do |row|
+      p row
+    end
+  end
+
+  def grid_to_display(tallest_column, display_list)
     tallest_column.times do
       row_list = []
 
@@ -47,10 +55,6 @@ class Grid
       display_list << row_list
 
       tallest_column -= 1
-    end
-
-    display_list.each do |row|
-      p row
     end
   end
 
