@@ -11,7 +11,7 @@ class Grid
     loop do
       p "#{choose_player} turn"
       player_input = gets.chomp.to_i
-      add(player_input)
+      next if add(player_input) == false
       display_grid
 
       if player_win? == true
@@ -19,16 +19,15 @@ class Grid
         break
       end
 
-      #add_turn
+      add_turn
     end
   end
 
   def add(column_selection)
-    return if column_selection > 7
+    return false if column_selection > 7
     return if column_full?(column_selection)
 
     @grid[column_selection - 1] << choose_player
-    add_turn
   end
 
   def add_turn
