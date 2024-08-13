@@ -8,10 +8,12 @@ class Grid
   end
 
   def start
+    p 'Connect four'
     loop do
       p "#{choose_player} turn"
       player_input = gets.chomp.to_i
       next if add(player_input) == false
+
       display_grid
 
       if player_win? == true
@@ -19,8 +21,23 @@ class Grid
         break
       end
 
+      if game_draw? == true
+        p 'Its a draw !'
+        break
+      end
+
       add_turn
     end
+  end
+
+  def game_draw?
+    column_full = 0
+    @grid.each do |column|
+      column_full += 1 if column.length >= 6
+    end
+    return true if column_full >= 7
+
+    false
   end
 
   def add(column_selection)
