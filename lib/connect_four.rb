@@ -8,7 +8,9 @@ class Grid
   end
 
   def start
-    p 'Connect four'
+    p 'Connect four (selcet a number from 1 to 7 and try to get 4 in a row)'
+    display_grid
+
     loop do
       p "#{choose_player} turn"
       player_input = gets.chomp.to_i
@@ -109,8 +111,6 @@ class Grid
 
     each_column_item_to_horizontal_row(horizontal_row)
 
-    # horizontal_row.reject! { |element| all_equal?(element) }
-
     return true if four_items_in_horizontal_row?(horizontal_row)
 
     false
@@ -199,27 +199,20 @@ class Grid
     false
   end
 
-  def check_diagonal(counter_cross_v, counter_cross_h, check_diagonal_block, counter_cross = 0)
+  def check_diagonal(counter_cross_v, counter_cross_h, check_diagonal_block)
     loop_counter = 0
     temp_cross = []
-    # counter_cross_h = 7 if cross_left == true
     loop do
-      # return false if @grid[counter_cross_h][counter_cross_v].nil?
 
       temp_value = @grid[counter_cross_h][counter_cross_v]
 
       temp_cross = [] if temp_cross.include?(nil)
 
-      # return false if temp_value.nil?
-
-      counter_cross += 1
-      # counter_cross_h += 1
       counter_cross_h = check_diagonal_block.call(counter_cross_h)
       counter_cross_v += 1
 
       if temp_value == choose_player
         temp_cross << temp_value
-        counter_cross = 0 if counter_cross >= 4
         return true if temp_cross.length >= 4
       else
         temp_cross = []
